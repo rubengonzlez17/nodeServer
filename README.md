@@ -1,5 +1,4 @@
-# NodeJS-template
-Typescript and MongoDB login template 
+# NodeServer
 Based on Express.js and MongoDB
 
 Requeriments
@@ -9,7 +8,7 @@ MongoDB database, it can be configured using https://cloud.mongodb.com/ free ver
 # Installation
 Clone de repository, or download a ZIP file of it.
 
-$ git clone https://github.com/riviski/NodeJS-template
+$ git clone https://github.com/rubengonzlez17/nodeServer
 
 Once you cloned this repository, in order to install dependencies, run the following command:
 
