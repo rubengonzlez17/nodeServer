@@ -547,11 +547,15 @@ export class PlayersController{
         if(player == null){
             res.send({"player":null, "sold":[], "balance": balance});
         }else{
-            const team = await Team.findOne({_id:player.team_id});
+            const teamPlayer = await Team.findOne({_id:player.team_id});
+            const teams = await Team.find();
             const match = player.playedAway + player.playedHome;
-            const playerFields: any = await this.getDataPlayer(player, team, match);
-            for(const p of sold) listSold.push(await this.getDataPlayer(p, team, match));
-            
+            const playerFields: any = await this.getDataPlayer(player, teamPlayer, match);
+            for(const team of teams){
+                for(const p of sold){
+                    if(team.id == p.team_id) listSold.push(await this.getDataPlayer(p, team, match));
+                }
+            }
             res.send({"player":playerFields, "sold":listSold, "balance": new Intl.NumberFormat().format(newBalance)});
         }
     }

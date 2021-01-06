@@ -15,6 +15,7 @@ function makeRequest(typeSearch, position, balance) {
         var divPlayer = document.getElementById("recommendedPlayer");
         var divPlayersSold = document.getElementById("playersSold");
         var divBalance = document.getElementById("balance");
+        divPlayersSold.style.display = "block";
         insertBalance(divBalance, data["balance"]);
         if (data["player"] != null) {
             if (data["sold"].length != 0) {
