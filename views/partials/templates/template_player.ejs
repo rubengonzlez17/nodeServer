@@ -1,0 +1,91 @@
+<div class="row accordion d-flex">
+  <% indexPlayer=0 %>
+  <% for(var player of players) { %>
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card shadow py-2">
+      <div class="text-center card-box" id="heading">
+        <div class="member-card">
+          <ul class="list-inline">
+            <li class="list-inline-item">
+              <h7>Lanz. Penaltis</h7>
+              <i class="<%= player['penaltyTaker'][0] %>" style="color:<%= player['penaltyTaker'][1] %>"></i>
+            </li>
+            <li class="list-inline-item">
+              <h7>Lanz. Faltas</h7>
+              <i class="<%= player['foulTaker'][0] %>" style="color:<%= player['foulTaker'][1] %>"></i>
+            </li>
+            <li class="list-inline-item">
+              <h7>MVP <i class="fa fa-star"></i> <%= player['totalStatitics'][0] %></h7>
+            </li>
+          </ul>
+          <ul class="list-inline">
+            <li class="list-inline-item">
+              <h5><%= player['name'] %></h5><i class="<%= player['status'][0] %>" style="color:<%= player['status'][1] %>"></i><h7> <%= player['status'][2] %></h7>
+              <h6>Puntos: <%= player['points'] %></h6>
+            </li>
+          </ul>
+          <ul class="list-inline">
+            <li class="list-inline-item"><%= player['position'] %></li>
+            <li class="list-inline-item">
+              <div class="thumb-lg member-thumb mx-auto">
+                <a href="/player/<%= player['img'][1] %>"><img class="rounded-circle img-thumbnail" alt="profile-image" src=<%= player['img'][0] %>></a>
+              </div>
+            </li>
+            <li class="list-inline-item">
+              <a href="/team/<%= player['teamImg'][1] %>"> <img width="50" height="60" alt="profile-image" src=<%= player['teamImg'][0] %>></a>
+            </li>
+          </ul>
+          <p class="mb-0"><%= player['role'] %></p>
+          <p class="mb-0">Precio: <%= player['price'] %> €
+          <p class="mb-0">Precio Venta: <%= player['priceMarket'] %> €</p>
+          <div id="fitness<%=indexPlayer%>" class="fitness text-center" style="margin-top:10px" title="Puntos conseguidos en las últimas jornadas"></div>
+          <div id="titular<%=indexPlayer%>" class="fitness text-center" style="margin-top:10px" title="Titularidades en las últimas jornadas"></div>
+          <div class="mt-4" style="font-size: small;">
+            <div class="row">
+              <div class="col-4">
+                <div class="mt-2">
+                  <h4><%= player['match'] %></h4>
+                  <p class="mb-0 text-muted">Partidos</p>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="mt-2">
+                  <h4><%= player['totalStatitics'][1] %></h4>
+                  <p class="mb-0 text-muted">Goles</p>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="mt-2">
+                  <h4><%= player['mean'] %></h4>
+                  <p class="mb-0 text-muted">Media</p>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-4">
+                <div class="mt-2">
+                  <h4><%= player['sale'] %></h4>
+                  <p class="mb-0 text-muted">Venta</p>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="mt-2">
+                  <h4><%= player['demand'] %></h4>
+                  <p class="mb-0 text-muted">Demanda</p>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="mt-2">
+                  <h4><%= player['use'] %></h4>
+                  <p class="mb-0 text-muted">Uso</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% indexPlayer++ %>
+  <% } %>
+</div>

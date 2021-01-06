@@ -1,0 +1,13 @@
+<% if(messages.success){ %>
+    <div id="messageId" class="alert alert-success alert-dismissible fade show" style="text-align: center;display:flex;" role="alert">
+        <%= messages.success %>
+    </div>
+<% }%>
+<script type="text/javascript">
+    const messageId = document.querySelector('#messageId');
+    if(messageId){
+        setTimeout(function(){
+            messageId.style.display ="none";
+        },4000);
+    }
+</script>

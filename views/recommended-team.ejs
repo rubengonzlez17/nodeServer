@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title><%= title %></title>
+
+  <!-- Custom fonts for this template-->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+  <!-- Custom styles for this template-->
+  <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+  <link href="css/manager.css" rel="stylesheet">
+  
+</head>
+
+<body id="page-top">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+    <%- include('partials/sidebars/sidebar-index') %>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+        <!-- Topbar -->
+        <%- include('partials/top-bar') %>
+        <!-- End of Topbar -->
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid border-content">
+            <div class="row block-info">
+                <nav aria-label="breadcrumb" class="col-md-12">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item" aria-current="page">Mi Equipo</li>
+                    <li class="breadcrumb-item active" aria-current="page"><%= title %></li>
+                </ol>
+                </nav>
+                <div class="col-md-12 text-center">
+                    <div class="form-row justify-content-center p-4" style="padding-top:0 !important;">
+                        <div class="col-md-3 mb-4 p-3">
+                            <div class="form-group">
+                                <select id="inputSelectStrategy" name="inputSelectStrategy" class="form-control">
+                                <option style="display:none;" selected value="">Selecciona Estrategia</option>
+                                </select>
+                                <div class="form-group p-4">
+                                    <button class="btn btn-primary" id="btnRecommended" onclick="getRecommendedTeam()">Ver recomendación</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 modal-footer m-auto justify-content-center"></div>
+                <div class="col-md-12" id="team"></div>
+                <div class="col-md-12 mt-5">
+                  <div class="modal-loading"></div>
+                </div>  
+            </div>
+    
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
+      <!-- Footer -->
+      <%- include('partials/footer/copyright') %>
+      <!-- Footer -->
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin-2.min.js"></script>
+
+  <!-- Page level plugins -->
+  <script src="vendor/chart.js/Chart.min.js"></script>
+
+  <script src="/js/recommended/recommendedTeam.js"></script>
+  <script>
+      const listStrategy = <%- JSON.stringify(listStrategy) %>;
+      const DefaultSelectValue = <%- JSON.stringify(defaultSelectValue) %>;
+  </script>
+</body>
+
+</html>

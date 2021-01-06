@@ -1,0 +1,67 @@
+<div class="row">
+    <div class="col-lg-8">
+      <div class="card shadow">
+          <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Puntos</h6>
+          </div>
+          <div class="card-body">
+              <div class="text-center">
+                  <canvas id="pointsChart" width="740px"></canvas>
+              </div>
+          </div>
+      </div>
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Progreso de Puntos</h6>
+        </div>
+        <div class="card-body">
+          <div class="row accordion d-flex">
+            <% indexStatitics = 0 %>
+            <% for(var player of players) { %>
+              <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card shadow py-2">
+                  <div class="text-center card-box" id="heading">
+                    <div class="member-card">
+                      <h5><%= player['name'] %></h5>
+                      <div id="points<%=indexStatitics%>" class="fitness text-center" style="margin-top:10px" title="Puntos conseguidos en las últimas jornadas"></div>
+                      <div id="picas<%=indexStatitics%>" class="fitness text-center" style="margin-top:10px" title="Picas conseguidas en las últimas jornadas"></div>
+                      <div id="matches<%=indexStatitics%>" class="fitness text-center" style="margin-top:10px" title="Resultados de su equipo en las últimas jornadas"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <% indexStatitics++ %>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Content Column -->
+    <div class="col-lg-4">
+      <!-- Project Card Example -->
+      <div class="card shadow">
+        <div class="card-header">
+            <h6 class="m-0 font-weight-bold text-primary">Importancia del jugador en su equipo</h6>
+        </div>
+        <div class="card-body">
+          <% for(var player of players) { %>
+            <% var index = player['importance']*10 %>
+            <h6 class="font-weight-bold"><a href="/team/<%= player['teamImg'][1]%>"><img alt="profile-image" width="33" height="40" src=<%= player['teamImg'][0] %>></a> <%= player['name'] %> <span class="float-right " style="font-size:large; padding-top: 20px !important;"><%= player['importance']%>/10 </span></h6>
+            <div class="progress mb-3">
+                <div class="progress-bar bg-success" role="progressbar" style="width: <%= index %>%"></div>
+            </div>
+          <% } %>
+        </div>
+      </div>
+      <div class="card shadow" >
+        <div class="card-header">
+          <h6 class="m-0 font-weight-bold text-primary">Últimos valores de mercado</h6>
+        </div>
+        <div class="card-body">
+          <div class="text-center">
+              <canvas id="marketValueBarChart" width="80px"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

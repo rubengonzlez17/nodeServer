@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title><%= title %></title>
+
+  <!-- Custom fonts for this template-->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+  <!-- dataTables-->
+  <link href="/vendor/dataTables/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <link href="/vendor/dataTables/css/select.bootstrap4.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+  <link href="css/manager.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+    <%- include('partials/sidebars/sidebar-index') %>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+        <!-- Topbar -->
+        <%- include('partials/top-bar') %>
+        <!-- End of Topbar -->
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+            <div class="row block-info">
+                <nav aria-label="breadcrumb" class="col-md-12">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item" aria-current="page">Mi Equipo</li>
+                    <li class="breadcrumb-item active" aria-current="page">Mi Equipo</li>
+                  </ol>
+                </nav>
+                <div class="col-md-12 text-center">
+                    <div class="form-row justify-content-center p-4" style="padding-top:0 !important;">
+                        <div class="col-xl-2 col-md-6 mb-4">
+                            <div class="card shadow py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Estrategia</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><%= type %></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-md-6 mb-4">
+                            <div class="card shadow py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Jugadores</div>
+                                            <div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><%= players.length %></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-md-6 mb-4">
+                            <div class="card shadow py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Presupuesto</div>
+                                            <div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><%= balance %> €</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-md-6 mb-4">
+                            <div class="card shadow py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Puntos</div>
+                                            <div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><%= points %></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-md-6 mb-4">
+                            <div class="card shadow py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Mejor Jugador</div>
+                                            <div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><%= bestPlayer %></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-md-6 mb-4">
+                            <div class="card shadow py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Jugador más caro</div>
+                                            <div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><%= mostExpensive %></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <table id="tablePlayers" class="table m-auto text-center display nowrap" style="color:black; width:100%;">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Equipo</th>
+                                    <th>Posicion</th>
+                                    <th>Puntos</th>
+                                    <th>Estado</th>
+                                    <th>Últimos Puntos</th>
+                                    <th>Precio</th>
+                                    <th>Titular</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                          </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
+
+      <!-- Footer -->
+      <%- include('partials/footer/copyright') %>
+      <!-- Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin-2.min.js"></script>
+
+  <!-- dataTables -->
+  <script src="/vendor/dataTables/js/jquery.dataTables.min.js"></script>
+  <script src="/vendor/dataTables/js/dataTables.bootstrap4.min.js"></script>
+  <script src="/vendor/dataTables/js/dataTables.select.min.js"></script>
+
+  <script src="/js/players/myTeam.js"></script>
+
+  <script>
+      const players = <%- JSON.stringify(players) %>;
+      console.log(players);
+  </script>
+</body>
+
+</html>

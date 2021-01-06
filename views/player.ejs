@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title><%= title %></title>
+
+  <!-- Custom fonts for this template-->
+  <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+  <!-- Custom styles for this template-->
+  <link href="/css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="/css/manager.css" rel="stylesheet">
+</head>
+
+<body id="page-top">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+    <%- include('partials/sidebars/sidebar-index') %>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+        <!-- Topbar -->
+        <%- include('partials/top-bar') %>
+        <!-- End of Topbar -->
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid border-content">
+          <div class="row block-info">
+            <nav aria-label="breadcrumb" class="col-md-12">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Jugador</li>
+                <li class="breadcrumb-item" aria-current="page"><%= player.name %></li>
+              </ol>
+            </nav>
+            
+            <div class="col-md-12">
+              <div class="row accordion d-flex">
+                <div class="col-xl-4 col-md-6 mb-4">
+                  <div class="card shadow ">
+                    <div class="p-3 card-box text-center" id="heading">
+                      <div class="member-card">
+                        <ul class="list-inline">
+                          <li class="list-inline-item">
+                            <h7>Lanz. Penaltis</h7>
+                            <i class="<%= player['penaltyTaker'][0] %>" style="color:<%= player['penaltyTaker'][1] %>"></i>
+                          </li>
+                          <li class="list-inline-item">
+                            <h7>Lanz. Faltas</h7>
+                            <i class="<%= player['foulTaker'][0] %>" style="color:<%= player['foulTaker'][1] %>"></i>
+                          </li>
+                          <li class="list-inline-item">
+                            <h7>MVP <i class="fa fa-star"></i> <%= player['totalStatitics'][0] %></h7>
+                          </li>
+                        </ul>
+                        <ul class="list-inline">
+                          <li class="list-inline-item">
+                            <i class="<%= player['status'][0] %>" style="color:<%= player['status'][1] %>"></i><h7> <%= player['status'][2] %></h7>
+                          </li>
+                        </ul>
+                        <ul class="list-inline">
+                          <li class="list-inline-item"><%= player['position'] %></li>
+                          <li class="list-inline-item">
+                              <img class="rounded-circle img-thumbnail" width="150" height="120" src=<%= player['img'][0] %>>
+                          </li>
+                          <li class="list-inline-item">
+                            <a href="/team/<%= player['teamImg'][1] %>"> <img width="45" height="45" alt="profile-image" src=<%= player['teamImg'][0] %> ></a>
+                          </li>
+                        </ul>
+                        <div id="fitness0" class="fitness text-center" style="margin-top:10px" title="Puntos conseguidos en las últimas jornadas"></div>
+                        <div id="titular0" class="fitness text-center" style="margin-top:10px" title="Titularidades en las últimas jornadas"></div>
+                        <div id="matches0" class="fitness text-center" style="margin-top:10px" title="Resultados de su equipo en las últimas jornadas"></div>
+                        <div class="mt-4" style="font-size: small;">
+                          <strong><p>Próximo partido</p></strong>
+                          <ul class="list-inline">
+                            <a href="/team/<%= nextMatch['home'][0] %>"> <img width="30" height="40" alt="profile-image" src=<%= nextMatch['home'][1] %> ></a>
+                            <li class="list-inline-item">
+                              <p class="p-1">VS</p>
+                            </li>
+                            <li class="list-inline-item">
+                              <a href="/team/<%= nextMatch['away'][0] %>"> <img width="30" height="40" alt="profile-image" src=<%= nextMatch['away'][1] %> ></a>
+                            </li>
+                          </ul>
+                          <ul class="list-inline">
+                            <li class="list-inline-item">
+                              <i class="far fa-calendar-alt" data-fa-transform="down-2 right-5 shrink-8"></i>
+                            </li>
+                            <li class="list-inline-item">
+                              <p><%= nextMatch['date'] %></p>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-8 text-center">
+                  <div class="form-row justify-content-center p-4" style="padding-top:0 !important;">
+                    <div class="col-xl-3 col-md-6 mb-4 text-center">
+                      <div class="card shadow py-2">
+                          <div class="card-body">
+                              <div class="row no-gutters align-items-center">
+                                  <div class="col mr-2">
+                                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Uso</div>
+                                      <div class="h5 mb-0 font-weight-bold text-gray-800"><%= player.use %></div>
+                                  </div>
+                                  <div class="col-auto">
+                                    <i class="fas fa-gamepad fa-2x"></i>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6 mb-4 text-center">
+                      <div class="card shadow py-2">
+                          <div class="card-body">
+                              <div class="row no-gutters align-items-center">
+                                  <div class="col mr-2">
+                                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Demanda</div>
+                                      <div class="h5 mb-0 font-weight-bold text-gray-800"><%= player.demand %></div>
+                                  </div>
+                                  <div class="col-auto">
+                                    <i class="fas fa-signal fa-2x "></i>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6 mb-4 text-center">
+                      <div class="card shadow py-2">
+                          <div class="card-body">
+                              <div class="row no-gutters align-items-center">
+                                  <div class="col mr-2">
+                                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Ventas</div>
+                                      <div class="h5 mb-0 font-weight-bold text-gray-800"><%= player.sale %></div>
+                                  </div>
+                                  <div class="col-auto">
+                                    <i class="fas fa-comment-dollar fa-2x "></i>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6 mb-4 text-center">
+                      <div class="card shadow py-2">
+                          <div class="card-body">
+                              <div class="row no-gutters align-items-center">
+                                  <div class="col mr-2">
+                                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Tendencia</div>
+                                      <div class="h5 mb-0 font-weight-bold text-gray-800"> <i class="<%= player.tendecy[0] %>" style="color: <%= player.tendecy[1] %>;"></i></div>
+                                  </div>
+                                  <div class="col-auto">
+                                    <i class="fas fa-chart-line fa-2x "></i>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6 mb-4 text-center">
+                      <div class="card shadow py-2">
+                          <div class="card-body">
+                              <div class="row no-gutters align-items-center">
+                                  <div class="col mr-2">
+                                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Partidos</div>
+                                      <div class="h5 mb-0 font-weight-bold text-gray-800"><%= player.playedHome %></div>
+                                  </div>
+                                  <div class="col-auto">
+                                    <i class="fa fa-home fa-2x "></i>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6 mb-4 text-center">
+                      <div class="card shadow py-2">
+                          <div class="card-body">
+                              <div class="row no-gutters align-items-center">
+                                  <div class="col mr-2">
+                                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Partidos</div>
+                                      <div class="h5 mb-0 font-weight-bold text-gray-800"><%= player.playedAway %></div>
+                                  </div>
+                                  <div class="col-auto">
+                                    <i class="fas fa-plane-departure fa-2x "></i>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="col-xl-6 col-md-6 mb-4 text-center">
+                      <div class="card shadow py-2">
+                          <div class="card-body">
+                              <div class="row no-gutters align-items-center">
+                                  <div class="col mr-2">
+                                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Precio de Venta</div>
+                                      <div class="h5 mb-0 font-weight-bold text-gray-800"><%= player.price %> €</div>
+                                  </div>
+                                  <div class="col-auto">
+                                    <i class="fas fa-euro-sign  fa-2x text-300"></i>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6 mb-4 text-center">
+                      <div class="card shadow py-2">
+                          <div class="card-body">
+                              <div class="row no-gutters align-items-center">
+                                  <div class="col mr-2">
+                                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Puntos</div>
+                                      <div class="h5 mb-0 font-weight-bold text-gray-800"><%= player.pointsHome %></div>
+                                  </div>
+                                  <div class="col-auto">
+                                    <i class="fa fa-home fa-2x "></i>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6 mb-4 text-center">
+                      <div class="card shadow py-2">
+                          <div class="card-body">
+                              <div class="row no-gutters align-items-center">
+                                  <div class="col mr-2">
+                                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Puntos</div>
+                                      <div class="h5 mb-0 font-weight-bold text-gray-800"><%= player.pointsAway %></div>
+                                  </div>
+                                  <div class="col-auto">
+                                    <i class="fas fa-plane-departure fa-2x "></i>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6 mb-4 text-center">
+                      <div class="card shadow py-2">
+                          <div class="card-body">
+                              <div class="row no-gutters align-items-center">
+                                  <div class="col mr-2">
+                                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Amarillas</div>
+                                      <div class="h5 mb-0 font-weight-bold text-gray-800"><%= player.totalStatitics[2] %></div>
+                                  </div>
+                                  <div class="col-auto">
+                                    <i class="fas fa-square fa-2x text-300" style="color: yellow;"></i>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6 mb-4 text-center">
+                      <div class="card shadow py-2">
+                          <div class="card-body">
+                              <div class="row no-gutters align-items-center">
+                                  <div class="col mr-2">
+                                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Rojas</div>
+                                      <div class="h5 mb-0 font-weight-bold text-gray-800"><%= player.totalStatitics[3] %></div>
+                                  </div>
+                                  <div class="col-auto">
+                                    <i class="fas fa-square fa-2x text-300" style="color: red;"></i>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6 mb-4 text-center">
+                      <div class="card shadow py-2">
+                          <div class="card-body">
+                              <div class="row no-gutters align-items-center">
+                                  <div class="col mr-2">
+                                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Media</div>
+                                      <div class="h5 mb-0 font-weight-bold text-gray-800"><%= player.meanHome %></div>
+                                  </div>
+                                  <div class="col-auto">
+                                    <i class="fa fa-home fa-2x"></i>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6 mb-4 text-center">
+                      <div class="card shadow py-2">
+                          <div class="card-body">
+                              <div class="row no-gutters align-items-center">
+                                  <div class="col mr-2">
+                                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Media</div>
+                                      <div class="h5 mb-0 font-weight-bold text-gray-800"><%= player.meanAway %></div>
+                                  </div>
+                                  <div class="col-auto">
+                                    <i class="fas fa-plane-departure fa-2x"></i>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6 mb-4 text-center">
+                      <div class="card shadow py-2">
+                          <div class="card-body">
+                              <div class="row no-gutters align-items-center">
+                                  <div class="col mr-2">
+                                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Goles</div>
+                                      <div class="h5 mb-0 font-weight-bold text-gray-800"><%= player.totalStatitics[1] %></div>
+                                  </div>
+                                  <div class="col-auto">
+                                    <i class="fas fa-futbol fa-2x text-300"></i>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6 mb-4 text-center">
+                      <div class="card shadow py-2">
+                          <div class="card-body">
+                              <div class="row no-gutters align-items-center">
+                                  <div class="col mr-2">
+                                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Puntos Totales</div>
+                                      <div class="h5 mb-0 font-weight-bold text-gray-800"><%= player.points %></div>
+                                  </div>
+                                  <div class="col-auto">
+                                    <i class="fa fa-braille  fa-2x text-300"></i>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="card shadow">
+                      <div class="card-header py-3">
+                          <h6 class="m-0 font-weight-bold text-primary">Puntos</h6>
+                      </div>
+                      <div class="card-body">
+                          <div class="text-center">
+                              <canvas id="pointsChart" width="700px"></canvas>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="card shadow">
+                      <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Valor de mercado</h6>
+                      </div>
+                      <div class="card-body">
+                          <div class="text-center">
+                              <canvas id="areaChart" width="700px"></canvas>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
+      <!-- Footer -->
+      <%- include('partials/footer/copyright') %>
+      <!-- Footer -->
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="/vendor/jquery/jquery.min.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="/js/sb-admin-2.min.js"></script>
+
+  <!-- Page level plugins -->
+  <script src="/vendor/chart.js/Chart.min.js"></script>
+
+  <script src="/js/players/utils.js"></script>
+  <script src="/js/players/player.js"></script>
+  <script>
+      const player = <%- JSON.stringify(player) %>;
+      const lastRound = <%- JSON.stringify(lastRound) %>;
+      const lastValues = <%- JSON.stringify(lastValues) %>;
+      const players = [player];
+      console.log(player)
+  </script>
+</body>
+
+</html>
