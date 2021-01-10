@@ -58,7 +58,6 @@ function loadPlayers(positionValue, teamValue){
     }).done(function (data) {
         listPlayers = data.players;
         loadTable(listPlayers, true, true);
-
     }).fail(function () {
         console.log("AJAX ERROR");
     })

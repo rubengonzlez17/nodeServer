@@ -19,12 +19,14 @@ function makeRequest(typeSearch, position, balance) {
         insertBalance(divBalance, data["balance"]);
         if (data["player"] != null) {
             if (data["sold"].length != 0) {
-                insertPlayersSold(divPlayersSold, data["sold"]);
                 insertRecommendedPlayer(divPlayer, data["player"], "Para fichar..");
+                insertPlayersSold(divPlayersSold, data["sold"]);
             } else {
                 divPlayersSold.style.display = "none";
                 insertRecommendedPlayer(divPlayer, data["player"], "Deberias fichar a..");
             }
+            loadTitular();
+            loadFitness('fitness');
         } else {
             divPlayersSold.style.display = "none";
             divPlayer.innerHTML = "<h4>No hay fichajes posibles con esos filtros...</h4>";
@@ -169,8 +171,6 @@ function insertRecommendedPlayer(div, data, title) {
                 </div>
             </div>
         </div>
-    </div>`
+    </div>`;
     div.innerHTML = html;
-    loadTitular();
-    loadFitness('fitness');
 }
