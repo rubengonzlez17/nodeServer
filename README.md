@@ -21,4 +21,4 @@ $ npm run build
 
 Once compiled, you can start the server by running the following command:
 
-$npm start
+$ npm start
