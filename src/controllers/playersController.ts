@@ -32,23 +32,6 @@ export class PlayersController{
     public api_address: string = process.env.MANAGER_API + "/" + endpoints.User.toLowerCase();
     public listStrategy = ["4-3-3", "3-4-3", "3-5-2", "4-4-2","4-5-1","5-3-2", "5-4-1"]
     
-    public async getAllRounds(){
-        const rounds = await Round.find();
-        const listRounds: Array<string> = [];
-
-        rounds.sort(function(a: { short: string }, b: { short: string }){
-            if ( parseInt(a.short.substr(1)) < parseInt(b.short.substr(1)) ) return -1;
-            if ( parseInt(a.short.substr(1)) > parseInt(b.short.substr(1)) ) return 1;
-            return 0;
-        });
-
-        for(const round of rounds){
-            listRounds.push(round.short);
-        }
-
-        return listRounds;
-    }
-
     /**
      * GET /myTeam
      */
@@ -976,6 +959,24 @@ export class PlayersController{
         const lastRound = await Round.findOne({_id:lastMatch.round_id});
         return parseInt(lastRound.short.substr(1));
     }
+
+    private async getAllRounds(){
+        const rounds = await Round.find();
+        const listRounds: Array<string> = [];
+
+        rounds.sort(function(a: { short: string }, b: { short: string }){
+            if ( parseInt(a.short.substr(1)) < parseInt(b.short.substr(1)) ) return -1;
+            if ( parseInt(a.short.substr(1)) > parseInt(b.short.substr(1)) ) return 1;
+            return 0;
+        });
+
+        for(const round of rounds){
+            listRounds.push(round.short);
+        }
+
+        return listRounds;
+    }
+
 
     /* format functions */
     private formatMarketValue(valuesPlayer: Array<any>){
