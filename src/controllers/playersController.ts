@@ -135,67 +135,8 @@ export class PlayersController{
         }
 
         try{
-            const teams = await Team.find();
-            const type = "4-3-3";
-            //Portero
-            const goalkeeper = await Player.findOne({position: "PT"});
-            const teamGoalKeeper = await Team.findOne({_id:goalkeeper.team_id});
-            //Defensas
-            const defenses = await Player.find({position: "DF"}).limit(4);
-            const defensesFields: any = [];
-            //Mediocentros
-            const midfielders = await Player.find({position: "MC"}).limit(3);
-            const midfieldersFields: any = [];
-            //Delanteros
-            const forwards = await Player.find({position: "DL"}).limit(3);
-            const forwardsFields: any = [];
-
-            const goalkeeperField: any = [{
-                "name":goalkeeper.name,
-                "position":goalkeeper.position,
-                "img":[goalkeeper.img, goalkeeper.id],
-                "team":[teamGoalKeeper.img, teamGoalKeeper._id],
-            }];
-
-            for(const team of teams){
-                for(const defense of defenses){
-                    if(defense.team_id == team.id){
-                        defensesFields.push({
-                            "name":defense.name,
-                            "position":defense.position,
-                            "img":[defense.img, defense.id],
-                            "team":[team.img, team._id],
-                        });
-                    }
-                }
-                for(const midfielder of midfielders){
-                    if(midfielder.team_id == team.id){
-                        midfieldersFields.push({
-                            "name":midfielder.name,
-                            "position":midfielder.position,
-                            "img":[midfielder.img, midfielder.id],
-                            "team":[team.img, team._id],
-                        });
-                    }
-                }
-                for(const forward of forwards){
-                    if(forward.team_id == team.id){
-                        forwardsFields.push({
-                            "name":forward.name,
-                            "position":forward.position,
-                            "img":[forward.img, forward.id],
-                            "team":[team.img, team._id],
-                        });
-                    }
-                }
-            }
-
             res.render("recommended-team", {
                 title: "Once Recomendado",
-                goalkeeper: goalkeeperField,
-                defenses: defensesFields,
-                midfielders: midfieldersFields,
-                forwards: forwardsFields,
                 listStrategy: this.listStrategy,
                 defaultSelectValue: defaultValues.defaultSelectValue
             });
