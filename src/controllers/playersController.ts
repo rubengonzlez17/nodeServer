@@ -30,9 +30,25 @@ enum strategies {
 
 export class PlayersController{
     public api_address: string = process.env.MANAGER_API + "/" + endpoints.User.toLowerCase();
-    public allRounds = ["R1","R2","R3","R4","R5","R6","R7","R8","R9","R10","R11","R12","R13","R14","R15","R16","R17","R18","R19","R20","R21","R22","R23","R24","R25","R26","R27","R28","R29","R30","R31","R32","R33","R34","R35","R36","R37","R38"];
     public listStrategy = ["4-3-3", "3-4-3", "3-5-2", "4-4-2","4-5-1","5-3-2", "5-4-1"]
     
+    public async getAllRounds(){
+        const rounds = await Round.find();
+        const listRounds: Array<string> = [];
+
+        rounds.sort(function(a: { short: string }, b: { short: string }){
+            if ( parseInt(a.short.substr(1)) < parseInt(b.short.substr(1)) ) return -1;
+            if ( parseInt(a.short.substr(1)) > parseInt(b.short.substr(1)) ) return 1;
+            return 0;
+        });
+
+        for(const round of rounds){
+            listRounds.push(round.short);
+        }
+
+        return listRounds;
+    }
+
     /**
      * GET /myTeam
      */
@@ -864,7 +880,8 @@ export class PlayersController{
         const reportsPlayer: Array<any> = [];
         let reportPlayer: any;
         let result: [string,string];
-        for(const round of this.allRounds){
+        const allRounds = await this.getAllRounds();
+        for(const round of allRounds){
             for(const report of reports){
                 const matchId = await Match.findOne({_id:report.match_id});
                 if(report.win) result=["V", defaultValues.green];
